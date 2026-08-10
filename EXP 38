@@ -1,0 +1,57 @@
+#include <stdio.h>
+
+int modInverse(int a) {
+
+    int i;
+
+    for(i = 1; i < 26; i++) {
+
+        if((a * i) % 26 == 1)
+            return i;
+    }
+
+    return -1;
+}
+
+int main() {
+
+    int P[2][2] = {
+        {7, 4},
+        {11, 15}
+    };
+
+    int C[2][2] = {
+        {8, 21},
+        {19, 14}
+    };
+
+    int det;
+    int invDet;
+
+    printf("Known plaintext matrix:\n");
+
+    printf("7  4\n");
+    printf("11 15\n");
+
+    printf("\nKnown ciphertext matrix:\n");
+
+    printf("8  21\n");
+    printf("19 14\n");
+
+    det = (P[0][0] * P[1][1] -
+           P[0][1] * P[1][0]);
+
+    det = (det % 26 + 26) % 26;
+
+    invDet = modInverse(det);
+
+    printf("\nDeterminant = %d\n", det);
+    printf("Inverse determinant = %d\n", invDet);
+
+    printf("\nUsing:\n");
+    printf("K = C * inverse(P) mod 26\n");
+
+    printf("\nKnown plaintext attack can recover the Hill key.\n");
+
+    return 0;
+}

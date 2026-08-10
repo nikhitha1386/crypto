@@ -1,0 +1,43 @@
+#include <stdio.h>
+
+long long powerMod(long long a, long long b, long long q) {
+
+    long long result = 1;
+
+    while (b > 0) {
+
+        result = (result * a) % q;
+        b--;
+    }
+
+    return result;
+}
+
+int main() {
+
+    long long a = 5;
+    long long q = 23;
+
+    long long x = 6;
+    long long y = 15;
+
+    long long A = powerMod(a, x, q);
+    long long B = powerMod(a, y, q);
+
+    long long key1 = powerMod(B, x, q);
+    long long key2 = powerMod(A, y, q);
+
+    printf("Public a = %lld\n", a);
+    printf("Public q = %lld\n", q);
+
+    printf("Alice secret x = %lld\n", x);
+    printf("Bob secret y = %lld\n", y);
+
+    printf("\nAlice sends = %lld\n", A);
+    printf("Bob sends = %lld\n", B);
+
+    printf("\nAlice shared key = %lld\n", key1);
+    printf("Bob shared key   = %lld\n", key2);
+
+    return 0;
+}

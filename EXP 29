@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+int main() {
+
+    int stateLanes = 25;
+    int blockLanes = 16;
+    int capacityLanes = stateLanes - blockLanes;
+
+    printf("SHA-3 State = 1600 bits\n");
+    printf("Lane size = 64 bits\n");
+
+    printf("\nMessage block = 1024 bits\n");
+    printf("Message lanes = %d\n", blockLanes);
+
+    printf("Capacity lanes = %d\n", capacityLanes);
+
+    printf("\nInitially nonzero lanes = %d\n",
+           blockLanes);
+
+    printf("Initially zero capacity lanes = %d\n",
+           capacityLanes);
+
+    printf("\nIgnoring permutation, all capacity lanes");
+    printf(" remain zero.\n");
+
+    return 0;
+}

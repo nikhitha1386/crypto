@@ -1,0 +1,22 @@
+#include <stdio.h>
+
+int main() {
+
+    int n = 3233;
+    int e = 17;
+    int i;
+
+    printf("RSA lookup table attack\n\n");
+
+    for(i = 0; i < 26; i++) {
+        printf("%c -> %d\n",
+               'A' + i,
+               i);
+    }
+
+    printf("\nOnly 26 possible plaintext values exist.\n");
+    printf("An attacker can build a complete lookup table.\n");
+    printf("Therefore this method is NOT secure.\n");
+
+    return 0;
+}

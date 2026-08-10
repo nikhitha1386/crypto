@@ -1,0 +1,32 @@
+#include <stdio.h>
+
+int gcd(int a, int b) {
+    while (b != 0) {
+        int t = b;
+        b = a % b;
+        a = t;
+    }
+
+    return a;
+}
+
+int main() {
+
+    int n = 77;
+    int plaintext = 14;
+
+    int g = gcd(plaintext, n);
+
+    printf("n = %d\n", n);
+    printf("Plaintext block = %d\n", plaintext);
+
+    printf("gcd(%d,%d) = %d\n",
+           plaintext, n, g);
+
+    if (g > 1)
+        printf("\nA factor of n is revealed.\n");
+    else
+        printf("\nNo factor is revealed.\n");
+
+    return 0;
+}

@@ -1,0 +1,53 @@
+#include <stdio.h>
+#include <ctype.h>
+
+int main() {
+
+    char cipher[500];
+
+    int freq[26] = {0};
+    int i, j, temp;
+
+    int order[26];
+
+    printf("Enter ciphertext:\n");
+    fgets(cipher, sizeof(cipher), stdin);
+
+    for(i = 0; i < 26; i++)
+        order[i] = i;
+
+    for(i = 0; cipher[i] != '\0'; i++) {
+
+        if(isalpha(cipher[i]))
+            freq[toupper(cipher[i]) - 'A']++;
+    }
+
+    /* Sort letters by frequency */
+    for(i = 0; i < 26; i++) {
+
+        for(j = i + 1; j < 26; j++) {
+
+            if(freq[order[j]] > freq[order[i]]) {
+
+                temp = order[i];
+                order[i] = order[j];
+                order[j] = temp;
+            }
+        }
+    }
+
+    printf("\nFrequency ranking:\n");
+
+    for(i = 0; i < 26; i++) {
+
+        if(freq[order[i]] > 0)
+
+            printf("%c : %d\n",
+                   'A' + order[i],
+                   freq[order[i]]);
+    }
+
+    printf("\nMost frequent ciphertext letter is likely to represent E.\n");
+
+    return 0;
+}

@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int main() {
+    char text[] =
+    "meet me at the usual place at ten rather than eight oclock";
+
+    int key[2][2] = {{9,4},{5,7}};
+    int p[2], c[2];
+    int i, n = 0;
+
+    char clean[100];
+
+    for(i = 0; text[i] != '\0'; i++) {
+        if(isalpha(text[i]))
+            clean[n++] = tolower(text[i]);
+    }
+
+    if(n % 2 != 0)
+        clean[n++] = 'x';
+
+    clean[n] = '\0';
+
+    printf("Plaintext: %s\n", clean);
+
+    printf("Ciphertext: ");
+
+    for(i = 0; i < n; i += 2) {
+
+        p[0] = clean[i] - 'a';
+        p[1] = clean[i+1] - 'a';
+
+        c[0] = (9*p[0] + 4*p[1]) % 26;
+        c[1] = (5*p[0] + 7*p[1]) % 26;
+
+        printf("%c%c", c[0]+'A', c[1]+'A');
+    }
+
+    printf("\n");
+
+    return 0;
+}

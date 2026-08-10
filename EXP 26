@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+int main() {
+
+    int n = 3233;
+
+    int oldE = 17;
+    int oldD = 2753;
+
+    int newE = 7;
+    int newD = 1783;
+
+    printf("RSA Modulus n = %d\n", n);
+
+    printf("\nOld public key : %d\n", oldE);
+    printf("Old private key: %d\n", oldD);
+
+    printf("\nNew public key : %d\n", newE);
+    printf("New private key: %d\n", newD);
+
+    printf("\nSame modulus is being reused.\n");
+    printf("This is NOT considered safe.\n");
+    printf("A new modulus should be generated.\n");
+
+    return 0;
+}

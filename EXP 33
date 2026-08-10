@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <stdint.h>
+
+uint32_t F(uint32_t r, uint32_t key) {
+    r = r ^ key;
+    r = (r << 3) | (r >> 29);
+    return r;
+}
+
+uint64_t desEncrypt(uint64_t block, uint64_t key) {
+
+    uint32_t L = block >> 32;
+    uint32_t R = block & 0xFFFFFFFF;
+
+    uint32_t subkey;
+
+    int i;
+
+    for(i = 1; i <= 16; i++) {
+
+        subkey = (uint32_t)(key >> (i % 32));
+
+        uint32_t temp = R;
+
+        R = L ^ F(R, subkey);
+        L = temp;
+    }
+
+    return ((uint64_t)R << 32) | L;
+}
+
+int main() {
+
+    uint64_t plaintext;
+    uint64_t key;
+    uint64_t ciphertext;
+
+    printf("Enter 64-bit plaintext in hexadecimal: ");
+    scanf("%llx", &plaintext);
+
+    printf("Enter key in hexadecimal: ");
+    scanf("%llx", &key);
+
+    ciphertext = desEncrypt(plaintext, key);
+
+    printf("\nPlaintext : %016llX\n", plaintext);
+    printf("Key       : %016llX\n", key);
+    printf("Ciphertext: %016llX\n", ciphertext);
+
+    return 0;
+}

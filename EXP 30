@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+int main() {
+
+    int X = 100;
+    int T = 55;
+
+    int secondBlock = X ^ T;
+
+    printf("Original message X = %d\n", X);
+    printf("CBC-MAC T = %d\n", T);
+
+    printf("\nConstructed message:\n");
+    printf("X || (X XOR T)\n");
+
+    printf("\nSecond block = %d XOR %d = %d\n",
+           X, T, secondBlock);
+
+    printf("\nForged message = %d || %d\n",
+           X, secondBlock);
+
+    printf("Forged CBC-MAC = %d\n", T);
+
+    printf("\nThe forged two-block message has");
+    printf(" the same MAC T.\n");
+
+    return 0;
+}

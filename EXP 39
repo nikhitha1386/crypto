@@ -1,0 +1,51 @@
+#include <stdio.h>
+
+void decrypt(char text[], int shift) {
+
+    int i;
+
+    for(i = 0; text[i] != '\0'; i++) {
+
+        if(text[i] >= 'A' && text[i] <= 'Z')
+
+            printf("%c",
+                (text[i] - 'A' - shift + 26) % 26 + 'A');
+
+        else if(text[i] >= 'a' && text[i] <= 'z')
+
+            printf("%c",
+                (text[i] - 'a' - shift + 26) % 26 + 'a');
+
+        else
+
+            printf("%c", text[i]);
+    }
+
+    printf("\n");
+}
+
+int main() {
+
+    char cipher[200];
+    int top, i;
+
+    printf("Enter ciphertext: ");
+    fgets(cipher, sizeof(cipher), stdin);
+
+    printf("How many possible plaintexts? ");
+    scanf("%d", &top);
+
+    if(top > 26)
+        top = 26;
+
+    printf("\nPossible plaintexts:\n");
+
+    for(i = 0; i < top; i++) {
+
+        printf("Key %2d: ", i);
+
+        decrypt(cipher, i);
+    }
+
+    return 0;
+}

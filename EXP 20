@@ -1,0 +1,46 @@
+#include <stdio.h>
+
+int encryptBlock(int block, int key) {
+    return block ^ key;
+}
+
+int main() {
+
+    int plaintext[] = {10,20,30,40};
+    int ciphertext[4];
+
+    int key = 7;
+    int IV = 5;
+    int i;
+
+    printf("CBC Encryption\n\n");
+
+    for(i = 0; i < 4; i++) {
+
+        if(i == 0)
+            ciphertext[i] =
+                encryptBlock(plaintext[i] ^ IV, key);
+        else
+            ciphertext[i] =
+                encryptBlock(
+                    plaintext[i] ^ ciphertext[i-1],
+                    key);
+    }
+
+    printf("Plaintext: ");
+
+    for(i = 0; i < 4; i++)
+        printf("%d ", plaintext[i]);
+
+    printf("\nCiphertext: ");
+
+    for(i = 0; i < 4; i++)
+        printf("%d ", ciphertext[i]);
+
+    printf("\n");
+
+    printf("\nSecurity: 3DES\n");
+    printf("Performance: 3DES is slower than DES/AES.\n");
+
+    return 0;
+}

@@ -1,0 +1,22 @@
+#include <stdio.h>
+
+int main() {
+
+    int i;
+
+    printf("DES Decryption Key Schedule\n\n");
+
+    printf("Encryption order:\n");
+
+    for(i = 1; i <= 16; i++)
+        printf("K%d ", i);
+
+    printf("\n\nDecryption order:\n");
+
+    for(i = 16; i >= 1; i--)
+        printf("K%d ", i);
+
+    printf("\n");
+
+    return 0;
+}

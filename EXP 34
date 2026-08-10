@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+
+    char text[100];
+    int len, blockSize = 8;
+    int padding;
+
+    printf("Enter plaintext: ");
+    fgets(text, sizeof(text), stdin);
+
+    len = strlen(text);
+
+    if(text[len - 1] == '\n')
+        len--;
+
+    padding = blockSize - (len % blockSize);
+
+    if(padding == 0)
+        padding = blockSize;
+
+    printf("\nPlaintext length = %d\n", len);
+    printf("Padding bytes = %d\n", padding);
+
+    printf("\nPadding format: 1 followed by zeros.\n");
+
+    printf("\nReason:");
+    printf("\nPadding every message makes removal unambiguous.\n");
+
+    return 0;
+}

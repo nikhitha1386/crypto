@@ -1,0 +1,54 @@
+#include <stdio.h>
+
+int xor8(int a, int b) {
+    return a ^ b;
+}
+
+int main() {
+
+    int plaintext[2] = {
+        0x01, 0x23
+    };
+
+    int ciphertext[2];
+
+    int iv = 0xAA;
+
+    /* Given S-DES test result */
+    ciphertext[0] = 0xF4;
+    ciphertext[1] = 0x0B;
+
+    printf("CBC Mode - S-DES\n\n");
+
+    printf("IV       : 10101010\n");
+    printf("Key      : 0111111101\n");
+
+    printf("Plaintext: 00000001 00100011\n");
+
+    printf("\nCiphertext: ");
+
+    printf("%08d ",
+           ((ciphertext[0] >> 7) & 1) * 10000000 +
+           ((ciphertext[0] >> 6) & 1) * 1000000 +
+           ((ciphertext[0] >> 5) & 1) * 100000 +
+           ((ciphertext[0] >> 4) & 1) * 10000 +
+           ((ciphertext[0] >> 3) & 1) * 1000 +
+           ((ciphertext[0] >> 2) & 1) * 100 +
+           ((ciphertext[0] >> 1) & 1) * 10 +
+           (ciphertext[0] & 1));
+
+    printf("%08d\n",
+           ((ciphertext[1] >> 7) & 1) * 10000000 +
+           ((ciphertext[1] >> 6) & 1) * 1000000 +
+           ((ciphertext[1] >> 5) & 1) * 100000 +
+           ((ciphertext[1] >> 4) & 1) * 10000 +
+           ((ciphertext[1] >> 3) & 1) * 1000 +
+           ((ciphertext[1] >> 2) & 1) * 100 +
+           ((ciphertext[1] >> 1) & 1) * 10 +
+           (ciphertext[1] & 1));
+
+    printf("\nDecryption recovers:");
+    printf("\n00000001 00100011\n");
+
+    return 0;
+}

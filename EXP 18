@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+int main() {
+
+    int round;
+
+    printf("DES Subkey Generation\n\n");
+
+    printf("Initial key: 56 bits\n");
+    printf("C0 = 28 bits\n");
+    printf("D0 = 28 bits\n\n");
+
+    for(round = 1; round <= 16; round++) {
+
+        printf("Round %2d: ", round);
+        printf("C%d -> 24 bits, ", round);
+        printf("D%d -> 24 bits\n", round);
+    }
+
+    return 0;
+}

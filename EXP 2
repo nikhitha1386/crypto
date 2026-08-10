@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char text[100], key[27], result[100];
+    int i;
+
+    printf("Enter plaintext: ");
+    fgets(text, sizeof(text), stdin);
+
+    printf("Enter 26-letter cipher key: ");
+    scanf("%26s", key);
+
+    for(i = 0; text[i] != '\0'; i++) {
+        if(text[i] >= 'A' && text[i] <= 'Z')
+            result[i] = key[text[i] - 'A'];
+        else if(text[i] >= 'a' && text[i] <= 'z')
+            result[i] = key[text[i] - 'a'];
+        else
+            result[i] = text[i];
+    }
+
+    result[i] = '\0';
+
+    printf("Ciphertext: %s", result);
+
+    return 0;
+}

@@ -1,0 +1,46 @@
+#include <stdio.h>
+
+int main() {
+
+    int a, b;
+    int i, p, c;
+    char text[100];
+
+    printf("Enter plaintext: ");
+    fgets(text, sizeof(text), stdin);
+
+    printf("Enter a: ");
+    scanf("%d", &a);
+
+    printf("Enter b: ");
+    scanf("%d", &b);
+
+    printf("\nCiphertext: ");
+
+    for(i = 0; text[i] != '\0'; i++) {
+
+        if(text[i] >= 'A' && text[i] <= 'Z') {
+
+            p = text[i] - 'A';
+
+            c = (a * p + b) % 26;
+
+            printf("%c", c + 'A');
+        }
+
+        else if(text[i] >= 'a' && text[i] <= 'z') {
+
+            p = text[i] - 'a';
+
+            c = (a * p + b) % 26;
+
+            printf("%c", c + 'a');
+        }
+
+        else {
+            printf("%c", text[i]);
+        }
+    }
+
+    return 0;
+}

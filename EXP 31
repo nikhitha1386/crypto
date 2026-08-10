@@ -1,0 +1,41 @@
+#include <stdio.h>
+
+unsigned long long leftShift(unsigned long long x) {
+    return x << 1;
+}
+
+int main() {
+    unsigned long long L = 0;
+    unsigned long long K1, K2;
+    int msb;
+
+    printf("CMAC Subkey Generation\n");
+
+    /* Example block cipher output */
+    L = 0x123456789ABCDEF0ULL;
+
+    printf("\nL = %016llX\n", L);
+
+    msb = (L >> 63) & 1;
+
+    K1 = leftShift(L);
+
+    if (msb)
+        K1 = K1 ^ 0x87;
+
+    msb = (K1 >> 63) & 1;
+
+    K2 = leftShift(K1);
+
+    if (msb)
+        K2 = K2 ^ 0x87;
+
+    printf("K1 = %016llX\n", K1);
+    printf("K2 = %016llX\n", K2);
+
+    printf("\nConstants:\n");
+    printf("64-bit  = 0x1B\n");
+    printf("128-bit = 0x87\n");
+
+    return 0;
+}

@@ -1,0 +1,34 @@
+#include <stdio.h>
+
+int main() {
+    char cipher[200], plain[200];
+    int i, c, p;
+    int a = 3;
+    int b = 15;
+    int inv = 9;   // inverse of 3 mod 26
+
+    printf("Enter ciphertext: ");
+    fgets(cipher, sizeof(cipher), stdin);
+
+    for(i = 0; cipher[i] != '\0'; i++) {
+        if(cipher[i] >= 'A' && cipher[i] <= 'Z') {
+            c = cipher[i] - 'A';
+            p = (inv * (c - b + 26)) % 26;
+            plain[i] = p + 'A';
+        }
+        else if(cipher[i] >= 'a' && cipher[i] <= 'z') {
+            c = cipher[i] - 'a';
+            p = (inv * (c - b + 26)) % 26;
+            plain[i] = p + 'a';
+        }
+        else {
+            plain[i] = cipher[i];
+        }
+    }
+
+    plain[i] = '\0';
+
+    printf("Decrypted text: %s", plain);
+
+    return 0;
+}

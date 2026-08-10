@@ -1,0 +1,15 @@
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    double keys = tgamma(26);   // 25!
+    double log2keys = log(keys) / log(2);
+
+    printf("Possible Playfair keys = 25!\n");
+    printf("Approximate power of 2 = 2^%.0f\n", log2keys);
+
+    printf("\nConsidering equivalent keys:");
+    printf("\nEffective keys are approximately 2^62\n");
+
+    return 0;
+}

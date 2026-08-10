@@ -1,0 +1,25 @@
+#include <stdio.h>
+
+int main() {
+
+    int n = 3599;
+    int e = 31;
+    int p = 59;
+    int q = 61;
+
+    int phi = (p - 1) * (q - 1);
+
+    int d = 0;
+
+    while ((e * d) % phi != 1)
+        d++;
+
+    printf("n = %d\n", n);
+    printf("p = %d\n", p);
+    printf("q = %d\n", q);
+    printf("e = %d\n", e);
+    printf("phi(n) = %d\n", phi);
+    printf("Private key d = %d\n", d);
+
+    return 0;
+}
